@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+
+  <param name="robot_description"
+ command="$(find xacro)/xacro.py '$(find dummy_robot_description)/urdf/dummy_robot.xacro'" />
+
+  <rosparam command="load" file="$(find joint_state_controller)/joint_state_controller.yaml" />
+
+  <rosparam command="load" file="$(find dummy_robot_control)/config/dummy_robot_controller.yaml" />
+
+  <node name="dummy_robot_control" pkg="dummy_robot_control" type="dummy_robot" />
+
+  <!-- load the controllers -->
+  <node name="default_controllers_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen"
+    args="dummy_robot_trajectory_controller
+          joint_state_controller" />
+
+</launch>

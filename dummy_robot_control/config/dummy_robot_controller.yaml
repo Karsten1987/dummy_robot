@@ -1,0 +1,9 @@
+dummy_robot_position_controller:
+  type: "position_controllers/JointPositionController"
+  joint: joint1
+
+dummy_robot_trajectory_controller:
+  type: "position_controllers/JointTrajectoryController"
+  joints:
+    - joint1
+    - joint2
