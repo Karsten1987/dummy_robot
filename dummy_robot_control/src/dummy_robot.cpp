@@ -13,7 +13,9 @@ int main( int argc, char** argv )
   ros::AsyncSpinner spinner( 1 );
   spinner.start();
 
-  size_t freq = 10; // in Hz
+  int freq = 10; // in Hz
+  ros::NodeHandle nh;
+  nh.param<int>( "freq", freq, freq );
   ros::Rate r( freq );
 
   while( ros::ok() )
