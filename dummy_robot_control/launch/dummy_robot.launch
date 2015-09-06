@@ -8,12 +8,14 @@
 
   <rosparam command="load" file="$(find dummy_robot_control)/config/dummy_robot_controller.yaml" />
 
-  <node name="dummy_robot_control" pkg="dummy_robot_control" type="dummy_robot" />
+  <node name="dummy_robot_control" pkg="dummy_robot_control" type="dummy_robot" output="screen"/>
 
   <!-- load the controllers -->
   <node name="default_controllers_spawner" pkg="controller_manager" type="spawner" respawn="false"
     output="screen"
-    args="dummy_robot_trajectory_controller
+    args="
+          dummy_robot_left_wheel_position_controller
+          dummy_robot_right_wheel_position_controller
           joint_state_controller" />
 
 </launch>

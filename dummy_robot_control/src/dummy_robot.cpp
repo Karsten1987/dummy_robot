@@ -3,6 +3,7 @@
 
 #include "dummy_hardware.h"
 
+
 int main( int argc, char** argv )
 {
   ros::init( argc, argv, "dummy_robot" );
@@ -24,7 +25,7 @@ int main( int argc, char** argv )
 
     robot.readJoints();
 
-    cm.update( t, ros::Duration( 1.0f/freq ) );
+    cm.update( t, ros::Duration(1.0f/freq) );
 
     robot.writeJoints();
 

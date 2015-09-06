@@ -1,9 +1,40 @@
-dummy_robot_position_controller:
-  type: "position_controllers/JointPositionController"
-  joint: joint1
+# position controllers
+position_joint_mode_controller:
+  type: joint_mode_controller/JointModeController
+  joint_mode: 1 # position
 
-dummy_robot_trajectory_controller:
-  type: "position_controllers/JointTrajectoryController"
-  joints:
-    - joint1
-    - joint2
+dummy_robot_left_wheel_position_controller:
+  type: "position_controllers/JointPositionController"
+  joint: left_wheel_joint
+
+dummy_robot_right_wheel_position_controller:
+  type: "position_controllers/JointPositionController"
+  joint: right_wheel_joint
+
+# velocity controllers
+velocity_joint_mode_controller:
+  type: joint_mode_controller/JointModeController
+  joint_mode: 2 # velocity
+
+dummy_robot_left_wheel_velocity_controller:
+  type:   "velocity_controllers/JointVelocityController"
+  joint:  left_wheel_joint
+
+dummy_robot_right_wheel_velocity_controller:
+  type:   "velocity_controllers/JointVelocityController"
+  joint:  right_wheel_joint
+
+mobile_base_controller:
+  type        : "diff_drive_controller/DiffDriveController"
+  open_loop   : true
+  left_wheel  : 'left_wheel_joint'
+  right_wheel : 'right_wheel_joint'
+  publish_rate: 50.0               # default: 50
+  pose_covariance_diagonal : [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
+  twist_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
+
+  # Wheel separation and diameter. These are both optional.
+  # diff_drive_controller will attempt to read either one or both from the
+  # URDF if not specified as a parameter
+  wheel_separation : 1.0
+  wheel_radius : 0.3
